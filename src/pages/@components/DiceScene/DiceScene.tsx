@@ -32,8 +32,8 @@ export const Dice: React.FC<DiceProps> = ({
 }) => {
   const group = useFBX('/models/dice/dice.fbx');
   const texture = useLoader(TextureLoader, '/models/dice/dice.png');
-  const mesh = useRef<Mesh>(group.children[0] as Mesh);
-  const geometry = mesh.current.geometry;
+  const mesh = group.children[0] as Mesh;
+  const geometry = mesh.geometry;
   const [hovered, setHover] = useState<boolean>(false);
   let newDiceValues: number[] = diceValues;
   const { size } = useThree();
@@ -43,7 +43,6 @@ export const Dice: React.FC<DiceProps> = ({
   return (
     <motion.mesh
       {...restProps}
-      ref={mesh}
       scale={hovered ? diceScale : diceScale / 1.2}
       geometry={geometry}
       position={[positionX * (dicePositionNumber - 2), 0, 0]}
