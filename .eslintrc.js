@@ -29,6 +29,7 @@ module.exports = {
     'react/self-closing-comp': 'error',
     'react-hooks/rules-of-hooks': 'error',
     'react-hooks/exhaustive-deps': 'error',
+    'react/no-unknown-property': ['error', { ignore: ['intensity', 'position', 'map'] }],
     eqeqeq: 'error',
     'no-param-reassign': 'error',
     'object-shorthand': ['error', 'always'],
