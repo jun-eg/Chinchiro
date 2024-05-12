@@ -4,7 +4,6 @@ import React, { useState } from 'react';
 import { TextureLoader, type Mesh } from 'three';
 import { FBXLoader } from 'three/examples/jsm/loaders/FBXLoader';
 import type { AnimationState } from '../..';
-import { useFBX } from '@react-three/drei';
 
 type DiceProps = {
   dicePositionNumber: number;
@@ -31,8 +30,8 @@ const DiceScene: React.FC<DiceProps> = ({
   dicePositionNumber,
   ...restProps
 }) => {
-  const group = useLoader(FBXLoader, 'models/dice/dice.fbx');
-  const texture = useLoader(TextureLoader, '/models/dice/dice.png');
+  const group = useLoader(FBXLoader, './models/dice/dice.fbx');
+  const texture = useLoader(TextureLoader, './models/dice/dice.png');
   const mesh = group.children[0] as Mesh;
   const geometry = mesh.geometry;
   const [hovered, setHover] = useState<boolean>(false);
