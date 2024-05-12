@@ -1,7 +1,7 @@
 import { Canvas } from '@react-three/fiber';
 import { useState } from 'react';
 import styles from './index.module.css';
-import DiceScene from './@components/DiceScene/DiceScene';
+import DiceScene from './_components/DiceScene/DiceScene';
 
 export type AnimationState = 'rest' | 'rolling' | 'drop';
 
