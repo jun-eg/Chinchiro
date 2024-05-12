@@ -1,7 +1,7 @@
 import { Canvas } from '@react-three/fiber';
 import { useState } from 'react';
-import { Dice } from './@components/DiceScene/DiceScene';
 import styles from './index.module.css';
+import DiceScene from './@components/DiceScene/DiceScene';
 
 export type AnimationState = 'rest' | 'rolling' | 'drop';
 
@@ -40,21 +40,21 @@ const Home = () => {
         <Canvas>
           <ambientLight intensity={1.5} />
           <pointLight position={[0, 10, 0]} intensity={200} />
-          <Dice
+          <DiceScene
             dicePositionNumber={1}
             diceValues={dicevalues}
             onClickDice={onClickDice}
             startAnimation={startAnimation}
             animationState={animatinState}
           />
-          <Dice
+          <DiceScene
             dicePositionNumber={2}
             diceValues={dicevalues}
             onClickDice={onClickDice}
             startAnimation={startAnimation}
             animationState={animatinState}
           />
-          <Dice
+          <DiceScene
             dicePositionNumber={3}
             diceValues={dicevalues}
             onClickDice={onClickDice}

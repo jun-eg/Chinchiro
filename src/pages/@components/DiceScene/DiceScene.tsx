@@ -22,7 +22,7 @@ const diceValuePosition = [
   { x: 0, y: 0.5 * Math.PI, z: -1 }, //6
 ];
 
-export const Dice: React.FC<DiceProps> = ({
+const DiceScene: React.FC<DiceProps> = ({
   diceValues,
   onClickDice,
   startAnimation,
@@ -121,3 +121,5 @@ export const Dice: React.FC<DiceProps> = ({
     </motion.mesh>
   );
 };
+
+export default DiceScene;
