@@ -38,7 +38,7 @@ const DideApp = () => {
     <>
       <div className={styles.container}>
         <Canvas>
-          <ambientLight intensity={1} />
+          <ambientLight intensity={1.5} />
           <pointLight position={[0, 10, 0]} intensity={200} />
           <Dice
             dicePositionNumber={1}
