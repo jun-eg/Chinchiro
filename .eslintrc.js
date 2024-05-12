@@ -2,13 +2,14 @@ module.exports = {
   root: true,
   extends: [
     'eslint:recommended',
+    'plugin:@react-three',
     'plugin:react/recommended',
     'plugin:react-hooks/recommended',
     'plugin:@typescript-eslint/recommended',
     'plugin:@typescript-eslint/eslint-recommended',
     'prettier',
   ],
-  plugins: ['@typescript-eslint', 'react'],
+  plugins: ['@typescript-eslint', 'react', '@react-three'],
   parser: '@typescript-eslint/parser',
   env: {
     browser: true,
