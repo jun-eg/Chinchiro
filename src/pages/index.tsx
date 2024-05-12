@@ -1,11 +1,11 @@
-import { Canvas, useThree } from '@react-three/fiber';
+import { Canvas } from '@react-three/fiber';
 import { useState } from 'react';
 import { Dice } from './@components/DiceScene/DiceScene';
 import styles from './index.module.css';
 
 export type AnimationState = 'rest' | 'rolling' | 'drop';
 
-const DideApp = () => {
+const Home = () => {
   const [dicevalues, setDiceValues] = useState<number[]>([1, 1, 1]);
   const [animatinState, setAnimationState] = useState<AnimationState>('rest');
 
@@ -67,4 +67,4 @@ const DideApp = () => {
   );
 };
 
-export default DideApp;
+export default Home;
