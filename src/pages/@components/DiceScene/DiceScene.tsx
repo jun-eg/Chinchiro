@@ -1,6 +1,6 @@
 import { useLoader, useThree } from '@react-three/fiber';
 import { motion } from 'framer-motion-3d';
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 import { TextureLoader, type Mesh } from 'three';
 import type { AnimationState } from '../..';
 import { useFBX } from '@react-three/drei';

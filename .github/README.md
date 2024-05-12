@@ -3,6 +3,7 @@
 ## はじめに
 
 [Node.js](https://nodejs.org/en)(LTSを強く推奨)&npmのセットアップを完了したあと、開発用サーバーを起動します：
+
 ```bash
 npm run dev
 ```
@@ -26,4 +27,5 @@ Next.jsの詳細については、以下のリソースをご覧ください：
 [Next.jsのGitHubリポジトリ](https://github.com/vercel/next.js/) - フィードバックやコントリビューションを歓迎します！
 
 ## Github Pagesへのデプロイ
+
 Github上のSettings -> Pages内のSourceをGitHub Actionsに切り替えるとWebページがデプロイされます。
