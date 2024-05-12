@@ -9,8 +9,6 @@ type DiceProps = {
   dicePositionNumber: number;
   diceValues: number[];
   animationState: AnimationState;
-  fbxUrl: string;
-  pngUrl: string;
   onClickDice: () => { newDiceValues: number[] };
   startAnimation: () => void;
 };
@@ -30,12 +28,11 @@ const DiceScene: React.FC<DiceProps> = ({
   startAnimation,
   animationState,
   dicePositionNumber,
-  fbxUrl,
-  pngUrl,
+
   ...restProps
 }) => {
-  const group = useLoader(FBXLoader, fbxUrl);
-  const texture = useLoader(TextureLoader, pngUrl);
+  const group = useLoader(FBXLoader, '../../../../public/models/dice.fbx');
+  const texture = useLoader(TextureLoader, '../../../../public/models/dice.png');
   const mesh = group.children[0] as Mesh;
   const geometry = mesh.geometry;
   const [hovered, setHover] = useState<boolean>(false);
