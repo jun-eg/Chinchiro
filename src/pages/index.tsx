@@ -1,4 +1,4 @@
-import { Canvas } from '@react-three/fiber';
+import { Canvas, useThree } from '@react-three/fiber';
 import { useState } from 'react';
 import { Dice } from './@components/DiceScene/DiceScene';
 import styles from './index.module.css';
@@ -42,7 +42,6 @@ const DideApp = () => {
           <pointLight position={[0, 10, 0]} intensity={200} />
           <Dice
             dicePositionNumber={1}
-            position={[-3, 0, 0]}
             diceValues={dicevalues}
             onClickDice={onClickDice}
             startAnimation={startAnimation}
@@ -50,7 +49,6 @@ const DideApp = () => {
           />
           <Dice
             dicePositionNumber={2}
-            position={[0, 0, 0]}
             diceValues={dicevalues}
             onClickDice={onClickDice}
             startAnimation={startAnimation}
@@ -58,7 +56,6 @@ const DideApp = () => {
           />
           <Dice
             dicePositionNumber={3}
-            position={[3, 0, 0]}
             diceValues={dicevalues}
             onClickDice={onClickDice}
             startAnimation={startAnimation}

@@ -1,4 +1,4 @@
-import { useLoader } from '@react-three/fiber';
+import { useLoader, useThree } from '@react-three/fiber';
 import { motion } from 'framer-motion-3d';
 import React, { useRef, useState } from 'react';
 import { TextureLoader, type Mesh } from 'three';
@@ -7,7 +7,6 @@ import { useFBX } from '@react-three/drei';
 
 type DiceProps = {
   dicePositionNumber: number;
-  position: [x: number, y: number, z: number];
   diceValues: number[];
   animationState: AnimationState;
   onClickDice: () => { newDiceValues: number[] };
@@ -37,13 +36,17 @@ export const Dice: React.FC<DiceProps> = ({
   const geometry = mesh.current.geometry;
   const [hovered, setHover] = useState<boolean>(false);
   let newDiceValues: number[] = diceValues;
+  const { size } = useThree();
+  const diceScale = Math.min(size.width, size.height) / 1000;
+  const positionX = Math.min(size.width / 300, diceScale * 4);
 
   return (
     <motion.mesh
       {...restProps}
       ref={mesh}
-      scale={hovered ? 0.7 : 0.5}
+      scale={hovered ? diceScale : diceScale / 1.2}
       geometry={geometry}
+      position={[positionX * (dicePositionNumber - 2), 0, 0]}
       onClick={(): void => {
         if (animationState === 'rest') {
           const clickedResult = onClickDice();
