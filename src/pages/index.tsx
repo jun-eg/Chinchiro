@@ -8,6 +8,8 @@ export type AnimationState = 'rest' | 'rolling' | 'drop';
 const Home = () => {
   const [dicevalues, setDiceValues] = useState<number[]>([1, 1, 1]);
   const [animatinState, setAnimationState] = useState<AnimationState>('rest');
+  const diceFbxUrl = './models/dice.fbx';
+  const dicePngUrl = './models/dice.png';
 
   const sleep = (ms: number): Promise<void> => {
     return new Promise((resolve) => {
@@ -46,6 +48,8 @@ const Home = () => {
             onClickDice={onClickDice}
             startAnimation={startAnimation}
             animationState={animatinState}
+            fbxUrl={diceFbxUrl}
+            pngUrl={dicePngUrl}
           />
           <DiceScene
             dicePositionNumber={2}
@@ -53,6 +57,8 @@ const Home = () => {
             onClickDice={onClickDice}
             startAnimation={startAnimation}
             animationState={animatinState}
+            fbxUrl={diceFbxUrl}
+            pngUrl={dicePngUrl}
           />
           <DiceScene
             dicePositionNumber={3}
@@ -60,6 +66,8 @@ const Home = () => {
             onClickDice={onClickDice}
             startAnimation={startAnimation}
             animationState={animatinState}
+            fbxUrl={diceFbxUrl}
+            pngUrl={dicePngUrl}
           />
         </Canvas>
       </div>
