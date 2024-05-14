@@ -9,7 +9,7 @@ const Home = () => {
   const [dicevalues, setDiceValues] = useState<number[]>([1, 1, 1]);
   const [animatinState, setAnimationState] = useState<AnimationState>('rest');
   const [playCount, setPlayCount] = useState<number>(0);
-  const [gameResult, setGameresult] = useState<number>();
+  const [gameResult, setGameresult] = useState<number | string>();
   let newDiceValues: [number, number, number] = [0, 0, 0];
 
   const count = () => {
@@ -23,20 +23,26 @@ const Home = () => {
     });
   };
 
-  const confirmResult = (oneDiceVqalu: number, twoDiceValu: number, threeDiceValue: number) => {
-    if (oneDiceVqalu === twoDiceValu) {
-      setPlayCount(3);
-      return threeDiceValue;
+  const confirmResult = (oneDiceValue: number, twoDiceValue: number, threeDiceValue: number) => {
+    if (dicevalues.every((val, _, arr) => val === arr[0])) {
+      setPlayCount(4);
+      return setGameresult('アラシ');
     }
-    if (oneDiceVqalu === threeDiceValue) {
-      setPlayCount(3);
-      return twoDiceValu;
+
+    if (oneDiceValue === twoDiceValue) {
+      setPlayCount(4);
+      return setGameresult(threeDiceValue);
     }
-    if (twoDiceValu === threeDiceValue) {
-      setPlayCount(3);
-      return oneDiceVqalu;
+    if (oneDiceValue === threeDiceValue) {
+      setPlayCount(4);
+      return setGameresult(twoDiceValue);
     }
-    return 0;
+    if (twoDiceValue === threeDiceValue) {
+      setPlayCount(4);
+      return setGameresult(oneDiceValue);
+    }
+
+    setGameresult(0);
   };
 
   const onClickDice = (): { newDiceValues: number[] } => {
@@ -58,7 +64,7 @@ const Home = () => {
     setAnimationState('drop');
     await sleep(500);
     setAnimationState('rest');
-    setGameresult(confirmResult(newDiceValues[0], newDiceValues[1], newDiceValues[2]));
+    confirmResult(newDiceValues[0], newDiceValues[1], newDiceValues[2]);
   };
 
   return (
