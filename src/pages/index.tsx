@@ -11,10 +11,9 @@ const Home = () => {
   const [playCount, setPlayCount] = useState<number>(0);
   const [gameResult, setGameresult] = useState<number | string>(0);
   let newDiceValues: [number, number, number] = [0, 0, 0];
-  let newPlayCount = 0;
 
   const count = () => {
-    newPlayCount = (playCount + 1) % 4;
+    const newPlayCount = (playCount % 3) + 1;
     setPlayCount(newPlayCount);
   };
 
@@ -26,30 +25,30 @@ const Home = () => {
 
   const confirmResult = (oneDiceValue: number, twoDiceValue: number, threeDiceValue: number) => {
     console.log(oneDiceValue, twoDiceValue, threeDiceValue);
-    console.log(newPlayCount);
 
     if (oneDiceValue === twoDiceValue && twoDiceValue === threeDiceValue) {
       if (oneDiceValue === 1) {
-        setPlayCount(4);
+        setPlayCount(3);
         return setGameresult('ピンゾロ');
       }
-      setPlayCount(4);
+      setPlayCount(3);
       return setGameresult('アラシ');
     }
 
     if (oneDiceValue === twoDiceValue) {
-      setPlayCount(4);
+      setPlayCount(3);
       return setGameresult(threeDiceValue);
     }
     if (oneDiceValue === threeDiceValue) {
-      setPlayCount(4);
+      setPlayCount(3);
       return setGameresult(twoDiceValue);
     }
     if (twoDiceValue === threeDiceValue) {
-      setPlayCount(4);
+      setPlayCount(3);
       return setGameresult(oneDiceValue);
     }
-    if (newPlayCount === 3) {
+    if (playCount === 2) {
+      setPlayCount(3);
       return setGameresult('目無し');
     }
 
