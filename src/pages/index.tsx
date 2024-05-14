@@ -9,11 +9,12 @@ const Home = () => {
   const [dicevalues, setDiceValues] = useState<number[]>([1, 1, 1]);
   const [animatinState, setAnimationState] = useState<AnimationState>('rest');
   const [playCount, setPlayCount] = useState<number>(0);
-  const [gameResult, setGameresult] = useState<number | string>();
+  const [gameResult, setGameresult] = useState<number | string>(0);
   let newDiceValues: [number, number, number] = [0, 0, 0];
+  let newPlayCount = 0;
 
   const count = () => {
-    const newPlayCount = (playCount + 1) % 4;
+    newPlayCount = (playCount + 1) % 4;
     setPlayCount(newPlayCount);
   };
 
@@ -24,7 +25,14 @@ const Home = () => {
   };
 
   const confirmResult = (oneDiceValue: number, twoDiceValue: number, threeDiceValue: number) => {
-    if (dicevalues.every((val, _, arr) => val === arr[0])) {
+    console.log(oneDiceValue, twoDiceValue, threeDiceValue);
+    console.log(newPlayCount);
+
+    if (oneDiceValue === twoDiceValue && twoDiceValue === threeDiceValue) {
+      if (oneDiceValue === 1) {
+        setPlayCount(4);
+        return setGameresult('ピンゾロ');
+      }
       setPlayCount(4);
       return setGameresult('アラシ');
     }
@@ -41,6 +49,9 @@ const Home = () => {
       setPlayCount(4);
       return setGameresult(oneDiceValue);
     }
+    if (newPlayCount === 3) {
+      return setGameresult('目無し');
+    }
 
     setGameresult(0);
   };
@@ -53,7 +64,6 @@ const Home = () => {
       Math.floor(Math.random() * 6 + 1),
     ];
 
-    count();
     setDiceValues(newDiceValues);
     return { newDiceValues };
   };
@@ -64,6 +74,7 @@ const Home = () => {
     setAnimationState('drop');
     await sleep(500);
     setAnimationState('rest');
+    count();
     confirmResult(newDiceValues[0], newDiceValues[1], newDiceValues[2]);
   };
 
