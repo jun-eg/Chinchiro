@@ -9,8 +9,65 @@ const Home = () => {
   const [dicevalues, setDiceValues] = useState<number[]>([1, 1, 1]);
   const [animatinState, setAnimationState] = useState<AnimationState>('rest');
   const [playCount, setPlayCount] = useState<number>(0);
-  const [gameResult, setGameresult] = useState<number | string>(0);
-  let newDiceValues: [number, number, number] = [0, 0, 0];
+  const [gameResult, setGameresult] = useState<string>();
+  let sortedDiceValues: number[] = [];
+
+  const test2: { [key: string]: number[][] } = {
+    '1': [
+      [1, 2, 2],
+      [1, 3, 3],
+      [1, 4, 4],
+      [1, 5, 5],
+      [1, 6, 6],
+    ],
+
+    '2': [
+      [1, 1, 2],
+      [2, 3, 3],
+      [2, 4, 4],
+      [2, 5, 5],
+      [2, 6, 6],
+    ],
+    '3': [
+      [1, 1, 3],
+      [2, 2, 3],
+      [3, 4, 4],
+      [3, 5, 5],
+      [3, 6, 6],
+    ],
+    '4': [
+      [1, 1, 4],
+      [2, 2, 4],
+      [3, 3, 4],
+      [4, 5, 5],
+      [4, 6, 6],
+    ],
+    '5': [
+      [1, 1, 5],
+      [2, 2, 5],
+      [3, 3, 5],
+      [4, 4, 5],
+      [5, 6, 6],
+    ],
+    '6': [
+      [1, 1, 6],
+      [2, 2, 6],
+      [3, 3, 6],
+      [4, 4, 6],
+      [5, 5, 6],
+    ],
+
+    ピンゾロ: [[1, 1, 1]],
+    アラシ: [
+      [2, 2, 2],
+      [3, 3, 3],
+      [4, 4, 4],
+      [5, 5, 5],
+      [6, 6, 6],
+    ],
+    シゴロ: [[4, 5, 6]],
+    ヒフミ: [[1, 2, 3]],
+  };
 
   const count = () => {
     const newPlayCount = (playCount % 3) + 1;
@@ -23,45 +80,34 @@ const Home = () => {
     });
   };
 
-  const confirmResult = (oneDiceValue: number, twoDiceValue: number, threeDiceValue: number) => {
-    console.log(oneDiceValue, twoDiceValue, threeDiceValue);
-
-    if (oneDiceValue === twoDiceValue && twoDiceValue === threeDiceValue) {
-      if (oneDiceValue === 1) {
-        setPlayCount(3);
-        return setGameresult('ピンゾロ');
+  const confirmResult = () => {
+    for (const key of Object.keys(test2)) {
+      for (const picked of test2[key]) {
+        if (
+          sortedDiceValues[0] === picked[0] &&
+          sortedDiceValues[1] === picked[1] &&
+          sortedDiceValues[2] === picked[2]
+        ) {
+          console.log(picked);
+          setGameresult(key);
+          setPlayCount(3);
+          return;
+        }
       }
-      setPlayCount(3);
-      return setGameresult('アラシ');
     }
-
-    if (oneDiceValue === twoDiceValue) {
-      setPlayCount(3);
-      return setGameresult(threeDiceValue);
-    }
-    if (oneDiceValue === threeDiceValue) {
-      setPlayCount(3);
-      return setGameresult(twoDiceValue);
-    }
-    if (twoDiceValue === threeDiceValue) {
-      setPlayCount(3);
-      return setGameresult(oneDiceValue);
-    }
-    if (playCount === 2) {
-      setPlayCount(3);
-      return setGameresult('目無し');
-    }
-
-    setGameresult(0);
+    setGameresult('0');
   };
 
   const onClickDice = (): { newDiceValues: number[] } => {
-    setGameresult(0);
-    newDiceValues = [
+    setPlayCount(0);
+    setGameresult('0');
+    const newDiceValues = [
       Math.floor(Math.random() * 6 + 1),
       Math.floor(Math.random() * 6 + 1),
       Math.floor(Math.random() * 6 + 1),
     ];
+
+    sortedDiceValues = newDiceValues.slice().sort();
 
     setDiceValues(newDiceValues);
     return { newDiceValues };
@@ -74,7 +120,7 @@ const Home = () => {
     await sleep(500);
     setAnimationState('rest');
     count();
-    confirmResult(newDiceValues[0], newDiceValues[1], newDiceValues[2]);
+    confirmResult();
   };
 
   return (
