@@ -12,7 +12,7 @@ const Home = () => {
   const [gameResult, setGameresult] = useState<string>();
   let sortedDiceValues: number[] = [];
 
-  const test2: { [key: string]: number[][] } = {
+  const poinrPaterns: { [key: string]: number[][] } = {
     '1': [
       [1, 2, 2],
       [1, 3, 3],
@@ -81,21 +81,23 @@ const Home = () => {
   };
 
   const confirmResult = () => {
-    for (const key of Object.keys(test2)) {
-      for (const picked of test2[key]) {
-        if (
-          sortedDiceValues[0] === picked[0] &&
-          sortedDiceValues[1] === picked[1] &&
-          sortedDiceValues[2] === picked[2]
-        ) {
-          console.log(picked);
-          setGameresult(key);
-          setPlayCount(3);
-          return;
-        }
+    const checkDiceValues = (onePointPatern: number[], key: string) => {
+      if (
+        sortedDiceValues[0] === onePointPatern[0] &&
+        sortedDiceValues[1] === onePointPatern[1] &&
+        sortedDiceValues[2] === onePointPatern[2]
+      ) {
+        setGameresult(key);
+        setPlayCount(3);
+        return;
+      }
+    };
+
+    for (const key of Object.keys(poinrPaterns)) {
+      for (const picked of poinrPaterns[key]) {
+        checkDiceValues(picked, key);
       }
     }
-    setGameresult('0');
   };
 
   const onClickDice = (): { newDiceValues: number[] } => {
