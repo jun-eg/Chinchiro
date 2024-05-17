@@ -95,7 +95,6 @@ export const useGameLogic = () => {
         checkDiceValues(picked, key);
       }
     }
-    
   };
 
   const onClickDice = (): { newDiceValues: number[] } => {
