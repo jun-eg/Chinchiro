@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import type { AnimationState } from '..';
+import type { AnimationState } from '../../types/gameType';
 
 export const useGameLogic = () => {
   const [dicevalues, setDiceValues] = useState<number[]>([1, 1, 1]);
@@ -7,6 +7,7 @@ export const useGameLogic = () => {
   const [playCount, setPlayCount] = useState<number>(0);
   const [gameResult, setGameresult] = useState<string>();
   let sortedDiceValues: number[] = [];
+  const dicePosition = [1, 2, 3];
 
   const pointPaterns: { [key: string]: number[][] } = {
     '1': [
@@ -94,6 +95,7 @@ export const useGameLogic = () => {
         checkDiceValues(picked, key);
       }
     }
+    
   };
 
   const onClickDice = (): { newDiceValues: number[] } => {
@@ -121,5 +123,13 @@ export const useGameLogic = () => {
     confirmResult();
   };
 
-  return { dicevalues, animatinState, gameResult, playCount, onClickDice, startAnimation };
+  return {
+    dicevalues,
+    animatinState,
+    gameResult,
+    playCount,
+    dicePosition,
+    onClickDice,
+    startAnimation,
+  };
 };
