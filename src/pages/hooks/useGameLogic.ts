@@ -7,7 +7,7 @@ export const useGameLogic = () => {
   const [playCount, setPlayCount] = useState<number>(0);
   const [gameResult, setGameresult] = useState<string>();
   let sortedDiceValues: number[] = [];
-  const dicePosition = [1, 2, 3];
+  const diceOfNumber = 3;
 
   const pointPaterns: { [key: string]: number[][] } = {
     '1': [
@@ -96,7 +96,6 @@ export const useGameLogic = () => {
   };
 
   const onClickDice = (): { newDiceValues: number[] } => {
-    setPlayCount(0);
     setGameresult('0');
     const newDiceValues = [
       Math.floor(Math.random() * 6 + 1),
@@ -125,7 +124,7 @@ export const useGameLogic = () => {
     animatinState,
     gameResult,
     playCount,
-    dicePosition,
+    diceOfNumber,
     onClickDice,
     startAnimation,
   };
