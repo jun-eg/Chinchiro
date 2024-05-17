@@ -78,11 +78,9 @@ export const useGameLogic = () => {
   };
 
   const confirmResult = () => {
-    const checkDiceValues = (onePointPatern: number[], key: string) => {
+    const checkDiceValues = (onePointPaternList: number[], key: string) => {
       if (
-        sortedDiceValues[0] === onePointPatern[0] &&
-        sortedDiceValues[1] === onePointPatern[1] &&
-        sortedDiceValues[2] === onePointPatern[2]
+        sortedDiceValues.every((oneDiceValue, index) => oneDiceValue === onePointPaternList[index])
       ) {
         setGameresult(key);
         setPlayCount(3);
@@ -91,8 +89,8 @@ export const useGameLogic = () => {
     };
 
     for (const key of Object.keys(pointPaterns)) {
-      for (const picked of pointPaterns[key]) {
-        checkDiceValues(picked, key);
+      for (const onePointPaternList of pointPaterns[key]) {
+        checkDiceValues(onePointPaternList, key);
       }
     }
   };
