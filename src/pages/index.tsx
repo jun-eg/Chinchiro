@@ -3,6 +3,7 @@ import styles from './index.module.css';
 import DiceScene from './_components/DiceScene/DiceScene';
 import { useGameLogic } from './hooks/useGameLogic';
 import PlayCount from './_components/PlayCount/PlayCount';
+import GameResult from './_components/GamaResult/GameResult';
 
 const Home = () => {
   const {
@@ -19,8 +20,8 @@ const Home = () => {
     <>
       <div className={styles.container}>
         <PlayCount playCount={playCount} />
-        <div>出目:{gameResult}</div>
-        <Canvas>
+        <GameResult gameResult={gameResult} />
+        <Canvas className={styles.canvas}>
           <ambientLight intensity={1.5} />
           <pointLight position={[0, 10, 0]} intensity={200} />
           {Array.from({ length: diceOfNumber }).map((_, index) => (

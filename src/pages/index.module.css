@@ -7,6 +7,11 @@
   min-height: 100vh;
 }
 
+.canvas {
+  position: static;
+  z-index: 1;
+}
+
 .dice {
   flex: 1;
 }
