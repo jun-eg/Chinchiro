@@ -7,6 +7,7 @@ export const useGameLogic = () => {
   const [playCount, setPlayCount] = useState<number>(0);
   const [gameResult, setGameresult] = useState<string | null>(null);
   let sortedDiceValues: number[] = [];
+  let newPlayCount = 0;
   const diceOfNumber = 3;
 
   const pointPaterns: { [key: string]: number[][] } = {
@@ -67,7 +68,7 @@ export const useGameLogic = () => {
   };
 
   const count = () => {
-    const newPlayCount = (playCount % 3) + 1;
+    newPlayCount = (playCount % 3) + 1;
     setPlayCount(newPlayCount);
   };
 
@@ -90,6 +91,10 @@ export const useGameLogic = () => {
         setGameresult(key);
         setPlayCount(3);
         return;
+      }
+
+      if (newPlayCount === 3) {
+        setGameresult('目なし');
       }
     };
 
