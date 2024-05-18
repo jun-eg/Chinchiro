@@ -14,13 +14,14 @@ const Home = () => {
     diceOfNumber,
     onClickDice,
     startAnimation,
+    Replay,
   } = useGameLogic();
 
   return (
     <>
       <div className={styles.container}>
         <PlayCount playCount={playCount} />
-        <GameResult gameResult={gameResult} />
+        <GameResult gameResult={gameResult} Replay={Replay} />
         <Canvas className={styles.canvas}>
           <ambientLight intensity={1.5} />
           <pointLight position={[0, 10, 0]} intensity={200} />

@@ -77,11 +77,9 @@ export const useGameLogic = () => {
     });
   };
 
-  const updatePlayCount = (newCount: number) => {
-    console.log(playCount);
+  const Replay = (newCount: number, newGameResult: null) => {
     setPlayCount(newCount);
-    setGameresult(null);
-    console.log(playCount);
+    setGameresult(newGameResult);
   };
 
   const confirmResult = () => {
@@ -134,6 +132,7 @@ export const useGameLogic = () => {
     diceOfNumber,
     onClickDice,
     startAnimation,
-    updatePlayCount,
+    Replay,
+    setGameresult,
   };
 };
