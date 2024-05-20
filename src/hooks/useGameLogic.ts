@@ -85,15 +85,17 @@ const useGameLogic = () => {
 
   const confirmResult = () => {
     const checkDiceValues = (onePointPaternList: number[], key: string) => {
-      if (
-        sortedDiceValues.every((oneDiceValue, index) => oneDiceValue === onePointPaternList[index])
-      ) {
+      const checkResult = sortedDiceValues.every(
+        (oneDiceValue, index) => oneDiceValue === onePointPaternList[index],
+      );
+
+      if (checkResult) {
         setGameresult(key);
         setPlayCount(3);
-        return;
       }
 
-      if (newPlayCount === 3) {
+      if (checkResult === false && newPlayCount === 3) {
+        console.log('gggggg');
         setGameresult('目なし');
       }
     };
@@ -107,11 +109,8 @@ const useGameLogic = () => {
 
   const onClickDice = (): { newDiceValues: number[] } => {
     setGameresult(null);
-    const newDiceValues = [
-      Math.floor(Math.random() * 6 + 1),
-      Math.floor(Math.random() * 6 + 1),
-      Math.floor(Math.random() * 6 + 1),
-    ];
+
+    const newDiceValues = Array.from({ length: 3 }).map(() => Math.floor(Math.random() * 6 + 1));
 
     sortedDiceValues = newDiceValues.slice().sort();
 
