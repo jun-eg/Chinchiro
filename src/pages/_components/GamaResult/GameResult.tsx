@@ -7,14 +7,14 @@ type GameResultProps = {
 };
 const GameResult: React.FC<GameResultProps> = ({ gameResult, Replay }) => {
   return (
-    <div className={styles.container}>
+    <>
       {gameResult !== null &&
         gameResult.split(',').map((result, index) => (
           <div className={styles.gameResult} key={index} onClick={() => Replay(0, null)}>
             {result}
           </div>
         ))}
-    </div>
+    </>
   );
 };
 export default GameResult;

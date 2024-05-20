@@ -9,7 +9,7 @@ const PlayCount: React.FC<PlayCountProps> = ({ playCount }) => {
   return (
     <div className={styles.container}>
       {Array.from({ length: playCount }).map((_, index) => (
-        <div className={styles.playCountRight} key={index}/>
+        <div className={styles.playCountRight} key={index} />
       ))}
     </div>
   );

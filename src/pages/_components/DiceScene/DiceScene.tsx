@@ -40,7 +40,7 @@ const DiceScene: React.FC<DiceProps> = ({
   let newDiceValues: number[] = diceValues;
   const { size } = useThree();
   const diceScale = Math.min(size.width, size.height) / 1500;
-  const positionX = Math.min(size.width / 300, diceScale * 4);
+  const positionX = Math.min(size.width, size.height) / 500;
 
   return (
     <motion.mesh
