@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import type { AnimationState } from '../../types/gameType';
 
-export const useGameLogic = () => {
+const useGameLogic = () => {
   const [dicevalues, setDiceValues] = useState<number[]>([1, 1, 1]);
   const [animatinState, setAnimationState] = useState<AnimationState>('rest');
   const [playCount, setPlayCount] = useState<number>(0);
@@ -141,3 +141,4 @@ export const useGameLogic = () => {
     setGameresult,
   };
 };
+export default useGameLogic;
