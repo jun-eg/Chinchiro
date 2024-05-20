@@ -39,7 +39,7 @@ const DiceScene: React.FC<DiceProps> = ({
   const [hovered, setHover] = useState<boolean>(false);
   let newDiceValues: number[] = diceValues;
   const { size } = useThree();
-  const diceScale = Math.min(size.width, size.height) / 1000;
+  const diceScale = Math.min(size.width, size.height) / 1500;
   const positionX = Math.min(size.width / 300, diceScale * 4);
 
   return (
