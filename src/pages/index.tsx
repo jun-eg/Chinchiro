@@ -1,9 +1,9 @@
 import { Canvas } from '@react-three/fiber';
 import styles from './index.module.css';
-import DiceScene from './_components/DiceScene/DiceScene';
-import PlayCount from './_components/PlayCount/PlayCount';
-import GameResult from './_components/GamaResult/GameResult';
-import useGameLogic from './hooks/useGameLogic';
+import DiceScene from '../components/DiceScene/DiceScene';
+import PlayCount from '../components/PlayCount/PlayCount';
+import GameResult from '../components/GamaResult/GameResult';
+import useGameLogic from '../hooks/useGameLogic';
 
 const Home = () => {
   const {

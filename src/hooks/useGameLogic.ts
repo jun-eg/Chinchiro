@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import type { AnimationState } from '../../types/gameType';
+import type { AnimationState } from '../types/gameType';
 
 const useGameLogic = () => {
   const [dicevalues, setDiceValues] = useState<number[]>([1, 1, 1]);

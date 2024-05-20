@@ -3,7 +3,7 @@ import { motion } from 'framer-motion-3d';
 import React, { useState } from 'react';
 import { TextureLoader, type Mesh } from 'three';
 import { FBXLoader } from 'three/examples/jsm/loaders/FBXLoader';
-import type { AnimationState } from '../../../types/gameType';
+import type { AnimationState } from '../../types/gameType';
 
 type DiceProps = {
   dicePositionNumber: number;
