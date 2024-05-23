@@ -22,20 +22,22 @@ const Home = () => {
       <div className={styles.container}>
         <PlayCount playCount={playCount} />
         <GameResult gameResult={gameResult} Replay={Replay} />
-        <Canvas className={styles.canvas}>
-          <ambientLight intensity={1.5} />
-          <pointLight position={[0, 10, 0]} intensity={200} />
-          {Array.from({ length: diceOfNumber }).map((_, index) => (
-            <DiceScene
-              key={index}
-              dicePositionNumber={index + 1}
-              diceValues={dicevalues}
-              onClickDice={onClickDice}
-              startAnimation={startAnimation}
-              animationState={animatinState}
-            />
-          ))}
-        </Canvas>
+        <div className={styles.daiceboard}>
+          <Canvas>
+            <ambientLight intensity={1.5} />
+            <pointLight position={[0, 10, 0]} intensity={200} />
+            {Array.from({ length: diceOfNumber }).map((_, index) => (
+              <DiceScene
+                key={index}
+                dicePositionNumber={index + 1}
+                diceValues={dicevalues}
+                onClickDice={onClickDice}
+                startAnimation={startAnimation}
+                animationState={animatinState}
+              />
+            ))}
+          </Canvas>
+        </div>
       </div>
     </>
   );

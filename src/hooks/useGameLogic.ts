@@ -95,7 +95,6 @@ const useGameLogic = () => {
       }
 
       if (checkResult === false && newPlayCount === 3) {
-        console.log('gggggg');
         setGameresult('目なし');
       }
     };
