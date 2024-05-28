@@ -94,14 +94,20 @@ const useGameLogic = () => {
         setPlayCount(3);
       }
 
+      console.log(checkResult);
+
       if (checkResult === false && newPlayCount === 3) {
         setGameresult('目なし');
       }
+
+      return checkResult;
     };
 
-    for (const key of Object.keys(pointPaterns)) {
+    outerLoop: for (const key of Object.keys(pointPaterns)) {
       for (const onePointPaternList of pointPaterns[key]) {
-        checkDiceValues(onePointPaternList, key);
+        if (checkDiceValues(onePointPaternList, key)) {
+          break outerLoop;
+        }
       }
     }
   };
