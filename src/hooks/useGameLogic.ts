@@ -83,33 +83,31 @@ const useGameLogic = () => {
     setGameresult(newGameResult);
   };
 
-  const confirmResult = () => {
-    const checkDiceValues = (onePointPaternList: number[], key: string) => {
-      const checkResult = sortedDiceValues.every(
-        (oneDiceValue, index) => oneDiceValue === onePointPaternList[index],
-      );
+  const checkDiceValues = (onePointPaternList: number[], key: string) => {
+    const checkResult = sortedDiceValues.every(
+      (oneDiceValue, index) => oneDiceValue === onePointPaternList[index],
+    );
 
-      if (checkResult) {
-        setGameresult(key);
-        setPlayCount(3);
-      }
-
-      console.log(checkResult);
-
-      if (checkResult === false && newPlayCount === 3) {
-        setGameresult('目なし');
-      }
-
-      return checkResult;
-    };
-
-    outerLoop: for (const key of Object.keys(pointPaterns)) {
-      for (const onePointPaternList of pointPaterns[key]) {
-        if (checkDiceValues(onePointPaternList, key)) {
-          break outerLoop;
-        }
-      }
+    if (checkResult) {
+      setGameresult(key);
+      setPlayCount(3);
     }
+
+    console.log(checkResult);
+
+    if (checkResult === false && newPlayCount === 3) {
+      setGameresult('目なし');
+    }
+
+    return checkResult;
+  };
+
+  const confirmResult = () => {
+    Object.keys(pointPaterns).some((key) =>
+      pointPaterns[key].some((onePointPaternList) => {
+        return checkDiceValues(onePointPaternList, key);
+      }),
+    );
   };
 
   const onClickDice = (): { newDiceValues: number[] } => {
